@@ -3,7 +3,7 @@
 struct Account
 {
     char name[20];
-    int number;
+    int number;  
     int balance;
 };
 
@@ -13,13 +13,14 @@ int main()
     printf("enter details of account %d: \n", 1);
 
     printf("enter name : ");
-    scanf("%s", myStruct.name);
+    // scanf("%s", &myStruct.name);
+    gets(myStruct.name);
 
     printf("enter number :");
-    scanf("%d", myStruct.number);
-
+    scanf("%d", &myStruct.number);
+    
     printf("enter balance :");
-    scanf("%d", myStruct.balance);
+    scanf("%d", &myStruct.balance);
 
     printf("details entered are : \n");
     printf("name : %s \n", myStruct.name);
