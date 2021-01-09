@@ -1,46 +1,46 @@
 #include<stdio.h>
-int a[20][20],q[20],visited[20],n,i,j,f=0,r=-1;
-void bfs(int v)
+
+int a[20][20],q[20],visited[20],n,front=-1,rear=-1;
+
+void bfs(int v) 
 {
-for(i=0;i<n;i++)
-if(a[v][i] && !visited[i])
-q[++r]=i;if(f<=r)
-{
-visited[q[f]]=1;
-bfs(q[f++]);
+       int i;
+       for (i=0;i<n;i++)                                // check all the vertices in the graph
+       {
+               if(a[v][i] != 0 && visited[i] == 0) // adjacent to v and not visited
+              {
+                       rear=rear+1;
+                       q[rear]=i;                       // insert them into queue
+                       visited[i]=1;          // mark the vertex visited
+                       printf("%d  ",i);
+              }
+      }
+      front=front+1;                             // remove the vertex at front of the queue
+      if(front<=rear)                           // as long as there are elements in the queue
+            bfs(q[front]);                  // peform bfs again on the vertex at front of the queue
 }
-}
-int main()
+void main()
 {
-int v;
-printf("\nEnter the number of vertices:");
-scanf("%d",&n);
-for(i=0;i<n;i++)
-{
-q[i]=0;
-visited[i]=0;
-}
-printf("\nEnter adjacency matrix of the graph:");
-for(i=0;i<n;i++)
-{
-for(j=0;j<n;j++)
-{
-scanf("%d",&a[i][j]);
-}
-}
-printf("Enter the starting vertex:");
-scanf("%d",&v);
-bfs(v);
-printf("\nThe node which are reachable are:\n");
-for(i=0;i<n;i++)
-{
-if(visited[i])
-printf("%d\t",i);
-else
-{
-printf("BFS is not possible.Not all nodes are reachable");
-break;
-}
-}
-return 0;
+    int v,i,j;
+    printf("\n Enter the number of vertices:");
+    scanf("%d",&n);
+    for (i=0;i<n;i++)                   // mark all the vertices as not visited
+    {
+        visited[i]=0;
+    }
+    printf("\n Enter graph data in matrix form:\n");
+    for (i=0;i<n;i++)
+      for (j=0;j<n;j++)
+       scanf("%d",&a[i][j]);
+    printf("\n Enter the starting vertex:");
+    scanf("%d",&v);
+    front=rear=0;
+    q[rear]=v;
+    printf("\n BFS traversal is:\n");
+    visited[v]=1;                                     // mark the starting vertex as visited
+    printf("%d   ",v);
+   
+    bfs(v);
+    if(rear != n-1)
+        printf("\n BFS is not possible");
 }
