@@ -8,7 +8,7 @@ int AdjacencyMat[20][20];
 int Visited[20], Stack[20];
 int visitedPointer = -1, stackPointer = -1;
 
-void putInAdjacecnyMat(char a[], int b)
+void putInAdjacencyMat(char a[], int b)
 {
     for (int k = 0; k < n; k++)
     {
@@ -89,7 +89,7 @@ void main()
     for (int i = 0; i < n; i++)
     {
         scanf("%s", s);
-        putInAdjacecnyMat(s, i);
+        putInAdjacencyMat(s, i);
     }
     // printAdjacencyMat();
     push(0);
