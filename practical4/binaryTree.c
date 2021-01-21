@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+int data[100], ch;
+int count = 0;
 
 struct Node
 {
@@ -7,7 +9,7 @@ struct Node
     struct Node *right;
     int data;
 };
-struct Node* create()
+struct Node *create()
 {
     struct Node *newNode;
     int data;
@@ -50,8 +52,40 @@ void postorder(struct Node *root)
     postorder(root->right);
     printf("%d ", root->data);
 }
+void get_array()
+{
+    FILE *InputFile;
+    InputFile = fopen("input.txt", "r");
+
+    char temp[10];
+    int c = 0;
+    int num = 0;
+    while ((ch = fgetc(InputFile)) != -1)
+    {
+        if (ch == ' ')
+        {
+            for (int k = 0; k < c; k++)
+            {
+                num = (num*10) + (((int)temp[k])- 48 );
+            }
+            data[count++] = num;
+            num = 0;
+            c = 0;
+        }
+        else
+        {
+            temp[c++] = ch;
+        }
+
+    }
+    fclose(InputFile);
+    for(int k=0;k<count;k++){
+        printf("%d \n", data[k]);
+    }
+}
 void main()
 {
+    // get_array();
     struct Node *root;
     root = create();
     printf("Inorder transversal:\n");
