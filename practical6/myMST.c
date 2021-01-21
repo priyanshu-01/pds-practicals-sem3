@@ -8,7 +8,7 @@ int storeVisitedNodes[40];    //stores the nodes which have been visited
 int numberOfNodesVisited = 0; //stores total no of nodes visited
 int totalWeight=0;
 
-struct SmallestEdge
+struct SmallestEdge      //stores the two nodes across an edge
 {
     int x;
     int y;
@@ -29,18 +29,18 @@ void MST()
     small->x = 0;
     small->y = 0;
     int tempNode;
-    for (int a = 0; a < numberOfNodesVisited; a++)
+    for (int a = 0; a < numberOfNodesVisited; a++)        //find the smallest edge from the visited nodes
     {
-        tempNode = storeVisitedNodes[a];
+        tempNode = storeVisitedNodes[a];        //takes visited node one by one
 
         for (int i = 0; i < n; i++)
         {
             if (
-                tempNode != i &&
-                visitedEdges[tempNode][i] != 1 &&
-                (weigthAdjacencyMat[tempNode][i] < smallestWeight || smallestWeight == 0))
+                tempNode != i &&        //removes loop
+                visitedEdges[tempNode][i] != 1 &&     //edge has not already been visited
+                (weigthAdjacencyMat[tempNode][i] < smallestWeight || smallestWeight == 0)) //this edge has smallest weight
             {
-                smallestWeight = weigthAdjacencyMat[tempNode][i];
+                smallestWeight = weigthAdjacencyMat[tempNode][i];    //weight of smallest edge
                 small->x = tempNode;
                 small->y = i;
             }
