@@ -35,7 +35,7 @@ void Merge(int lb, int mid, int ub)
             k++;
         }
     }
-    for (int i = 0; i < k; i++)       //suspect
+    for (int i = 0; i < k; i++)       
     {
         arr[lb + i] = b[i];
     }
@@ -61,7 +61,7 @@ void main()
         scanf("%d", &arr[i]);
     }
     MergeSort(0, n - 1);
-    printf("The sorted array is : ");
+    printf("The sorted array using Merge Sort is : ");
     for (int i = 0; i < n; i++)
     {
         printf("%d ", arr[i]);

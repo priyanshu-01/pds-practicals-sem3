@@ -1,44 +1,56 @@
-#include<stdio.h>
-void swap(int *x,int *y)
+#include <stdio.h>
+void swap(int *x, int *y)
 {
-    int temp=*x;
-    *x=*y;
-    *y=temp;
+    int temp = *x;
+    *x = *y;
+    *y = temp;
 }
-int partition(int A[],int l,int h)
+int partition(int A[], int lb, int ub)
 {
-    int pivot=A[l];
-    int i=l,j=h;
+    int pivot = A[lb];
+    int start = lb, end = ub;
     do
     {
-        do{i++;}while(A[i]<=pivot);
-        do{j--;}while(A[j]>pivot);
-        if(i<j)
-        swap(&A[i],&A[j]);
-    }while(i<j);
-    swap(&A[l],&A[j]);
-    return j;
+        do
+        {
+            start++;
+        } while (A[start] <= pivot);
+        do
+        {
+            end--;
+        } while (A[end] > pivot);
+        if (start < end)
+            swap(&A[start], &A[end]);
+    } while (start < end);
+    swap(&A[lb], &A[end]);
+    return end;
 }
-void quicksort(int A[],int l,int h)
+void quicksort(int A[], int lb, int ub)
 {
-    int j;
-    if(l<h)
+    int end;
+    if (lb < ub)
     {
-        j=partition(A,l,h);
-        quicksort(A,l,j);
-        quicksort(A,j+1,h);
+        end = partition(A, lb, ub);
+        quicksort(A, lb, end);
+        quicksort(A, end + 1, ub);
     }
 }
 int main()
 {
-    int A[]={11,13,7,56,98,44,89,90,32,14,__INT32_MAX__},n=11,i;
-     quicksort(A,0,10);
-     for(i=0;i<10;i++)
-     {
-         printf("%d",A[i]);
-         printf("\n");
-         
-     }
-     return 0;
-
+    int n;
+    printf("Enter the total no. of elements :  ");
+    scanf("%d", &n);
+    int A[n];
+    printf("Enter %d elements : \n", n);
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &A[i]);
+    }
+    quicksort(A, 0, n-1);
+    printf("Sorted array using quick sort is : \n");
+    for (int i = 0; i < n; i++)
+    {
+        printf("%d \n", A[i]);
+    }
+    return 0;
 }
