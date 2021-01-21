@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int m, n;
-int isColored[20];
+int isColored[20]; //stores the color corresponding to the vertex
 char s[20];
 int adjacencyMat[20][20];
 int numberOfVerticesColored = 0;
@@ -56,7 +56,7 @@ void main()
     scanf("%d", &m);
     printf("Enter the no of vertices : ");
     scanf("%d", &n);
-    printf("Enter the Adjacency Matrix in Matrix Form  : \n");
+    printf("Enter the Adjacency Matrix Row Wise  : \n");
     for (int i = 0; i < n; i++)
     {
         scanf("%s", s);

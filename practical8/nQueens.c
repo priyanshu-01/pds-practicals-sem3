@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int n;
-int isPlaced[20];
+int isPlaced[20]; //stores safely placed positon of each queen
 int numberOfQueensPlaced = 0;
 bool isSafe(int y, int x)
 {
@@ -35,7 +35,8 @@ void Place(int y)
             {
                 isPlaced[y] = -1;
                 numberOfQueensPlaced--;
-                Place(y - 1);
+                Place(y - 1);                  // BACKTRACKING
+                break;
             }
         }
 }
